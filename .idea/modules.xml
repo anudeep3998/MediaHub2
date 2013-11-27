@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://F://MediaHub2/MediaHub2.iml" filepath="F://MediaHub2/MediaHub2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MediaHub2.iml" filepath="$PROJECT_DIR$/MediaHub2.iml" />
     </modules>
   </component>
 </project>
