@@ -13,12 +13,14 @@ public class SQLite {
     private Statement statement;
     private Connection connection;
     private Status lastConnectionAttemptStatus;
+    private StringBuilder sqlQuery;
 
     public SQLite(){
         //Initializations
         statement=null;
         connection=null;
         lastConnectionAttemptStatus=Status.FAIL;
+        sqlQuery = new StringBuilder();
     }
 
     private Status setupConnection(String DbName) {
@@ -62,6 +64,17 @@ public class SQLite {
             return Status.SUCCESS;
         else
             return Status.FAIL;
+    }
+
+    public Status addWatchedDirectory(String DirectoryName,String DirectoryPath){
+        try {
+            if(lastConnectionAttemptStatus==Status.SUCCESS&&statement!=null){
+                StringBuilder DName=new StringBuilder();
+                String queryPrefix = "INSERT INTO WatchedDir (DirectoryName,DirectoryPath,URI,AddedOn,LastUpdatedOn) VALUES(";
+                sqlQuery.replace(0,sqlQuery.length(),queryPrefix);
+                sqlQuery.append()
+            }
+        }
     }
 
 

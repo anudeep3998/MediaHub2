@@ -1,0 +1,9 @@
+
+CREATE TABLE "WatchedDir"
+(
+   "DirectoryName" VARCHAR NOT NULL ,
+   "DirectoryPath" VARCHAR NOT NULL ,
+   "URI" VARCHAR PRIMARY KEY  NOT NULL ,
+   "AddedOn" DATETIME,
+   "LastUpdatedOn" DATETIME
+);
