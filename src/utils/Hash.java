@@ -13,7 +13,7 @@ public class Hash {
 
     private static MessageDigest m;
 
-    Hash(){
+    public Hash(){
         try {
             m = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
@@ -21,17 +21,17 @@ public class Hash {
         }
     }
 
-    public static String getHash(String plainText){
-        String hashText;
+    public StringBuilder getHash(String plainText){
+        StringBuilder hashText=new StringBuilder();
         try {
             //m.reset();
             m.update(plainText.getBytes("UTF-8"));
             byte[] digest = m.digest();
             BigInteger bigInt = new BigInteger(1,digest);
-            hashText = bigInt.toString(16);
+            hashText.append(bigInt.toString(16));
             // Now we need to zero pad it if you actually want the full 32 chars.
             while(hashText.length() < 32 ){
-                hashText = "0"+hashText;
+                hashText.insert(0,'0');
             }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

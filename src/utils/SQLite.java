@@ -7,9 +7,11 @@ import java.sql.Statement;
 
 /**
  * Created by Phoenix on 11/27/13.
+ * This file contains methods to accomplish tasks concerning sql.
  */
 
 public class SQLite {
+    private final Hash myHasher;
     private Statement statement;
     private static Connection connection;
     private static Status lastConnectionAttemptStatus;
@@ -22,6 +24,7 @@ public class SQLite {
         lastConnectionAttemptStatus=Status.FAIL;
         sqlQuery = new StringBuilder();
         hashText = new StringBuilder();
+        myHasher = new Hash();
     }
 
     private static Status setupConnection(String DbName) {
@@ -54,7 +57,6 @@ public class SQLite {
         }
         else{
             System.out.println("Statement already exists. Returning");
-            return;
         }
     }
 
@@ -74,7 +76,7 @@ public class SQLite {
                 DName.append('\'').append(DirectoryName).append('\'');
                 StringBuilder DPath=new StringBuilder();
                 DPath.append('\'').append(DirectoryPath).append('\'');
-                hashText.replace(0,32,Hash.getHash(DirectoryPath));
+                hashText=myHasher.getHash(DirectoryPath);
                 String queryPrefix = "INSERT INTO WatchedDir (DirectoryName,DirectoryPath,URI,AddedOn,LastUpdatedOn) VALUES(";
                 sqlQuery.replace(0,sqlQuery.length(),queryPrefix);
             }
