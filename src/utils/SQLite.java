@@ -11,9 +11,9 @@ import java.sql.Statement;
 
 public class SQLite {
     private Statement statement;
-    private Connection connection;
-    private Status lastConnectionAttemptStatus;
-    private StringBuilder sqlQuery;
+    private static Connection connection;
+    private static Status lastConnectionAttemptStatus;
+    private StringBuilder sqlQuery,hashText;
 
     public SQLite(){
         //Initializations
@@ -21,9 +21,10 @@ public class SQLite {
         connection=null;
         lastConnectionAttemptStatus=Status.FAIL;
         sqlQuery = new StringBuilder();
+        hashText = new StringBuilder();
     }
 
-    private Status setupConnection(String DbName) {
+    private static Status setupConnection(String DbName) {
         try {
             Class.forName("org.sqlite.JDBC");
             connection= DriverManager.getConnection("jdbc:sqlite:"+DbName+".db");
@@ -70,11 +71,18 @@ public class SQLite {
         try {
             if(lastConnectionAttemptStatus==Status.SUCCESS&&statement!=null){
                 StringBuilder DName=new StringBuilder();
+                DName.append('\'').append(DirectoryName).append('\'');
+                StringBuilder DPath=new StringBuilder();
+                DPath.append('\'').append(DirectoryPath).append('\'');
+                hashText.replace(0,32,Hash.getHash(DirectoryPath));
                 String queryPrefix = "INSERT INTO WatchedDir (DirectoryName,DirectoryPath,URI,AddedOn,LastUpdatedOn) VALUES(";
                 sqlQuery.replace(0,sqlQuery.length(),queryPrefix);
-                sqlQuery.append()
             }
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return Status.FAIL;
     }
 
 
