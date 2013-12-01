@@ -1,5 +1,6 @@
 import utils.Hash;
 import utils.SQLite;
+import utils.constants.MyQueries;
 
 /**
  * Created by Phoenix on 11/27/13.
@@ -12,12 +13,13 @@ public class MediaHub {
         sqLite.initializeDb("MediaHub");
         StringBuilder stringBuilder=new StringBuilder();
         long time = System.currentTimeMillis();
-        for (int i = 5; i < 25; i++) {
+        for (int i = 1002000; i < 1003000; i++) {
             stringBuilder.setLength(0);
             stringBuilder.append("GoUnited!!!").append(i);
             //System.out.println(String.valueOf(stringBuilder));
-            sqLite.addWatchedDirectory("GoUnited", String.valueOf(stringBuilder));
+            sqLite.addToInsertBatch(1,"GoUnited", String.valueOf(stringBuilder));
         }
+        sqLite.forceExecuteStatement(MyQueries.INSERT_WATCHED_DIRECTORY);
         System.out.println("Hashing ended in :" + (System.currentTimeMillis() - time));
     }
 }

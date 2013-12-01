@@ -8,7 +8,8 @@ public enum MyQueries {
     INSERT_MEDIA_ITEM,
     CREATE_WATCHED_DIRECTORY_TABLE,
     CREATE_MEDIA_ITEM_TABLE,
-    SEARCH_MEDIA_ITEM;
+    SEARCH_MEDIA_ITEM,
+    SEARCH_WATCHED_FOLDER;
 
     private static final int size = MyQueries.values().length;  //create a size variable to get the size easily
 
