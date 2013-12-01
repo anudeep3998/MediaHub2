@@ -10,7 +10,7 @@ public enum MyQueries {
     CREATE_MEDIA_ITEM_TABLE,
     SEARCH_MEDIA_ITEM;
 
-    private static final int size = MyQueries.values().length;  //create a size variable to get the sie easily
+    private static final int size = MyQueries.values().length;  //create a size variable to get the size easily
 
     public static int getSize(){
         return size;
